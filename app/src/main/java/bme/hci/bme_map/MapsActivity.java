@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.IndoorBuilding;
 import com.google.android.gms.maps.model.IndoorLevel;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,6 +55,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(18));
         mMap.setIndoorEnabled(true);
+
+        mMap.setOnCameraChangeListener(onCameraChange);
     }
 
 
@@ -111,4 +115,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
     }
+
+    private GoogleMap.OnCameraChangeListener onCameraChange = new GoogleMap.OnCameraChangeListener(){
+        @Override
+        public void onCameraChange(CameraPosition cameraPosition) {
+            LatLng new_pos = cameraPosition.target;
+            float new_zoom = cameraPosition.zoom;
+            if (new_zoom < 17.2){
+                mMap.moveCamera(CameraUpdateFactory.zoomTo((float)17.2));
+            }
+            double latitude = new_pos.latitude;
+            double longitude = new_pos.longitude;
+            // Top
+            if (new_pos.latitude > 48.8965)
+                latitude = 48.8965;
+            // Bottom
+            else if (new_pos.latitude < 48.8952)
+                latitude = 48.8952;
+            if (new_pos.longitude > 2.3895)
+                longitude = 2.3895;
+            else if (new_pos.longitude < 2.3865)
+                longitude = 2.3865;
+
+            if ((latitude != new_pos.latitude) || (longitude != new_pos.longitude)){
+                LatLng pos = new LatLng(latitude,longitude);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
+            }
+        }
+    };
+
 }
