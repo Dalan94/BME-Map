@@ -25,6 +25,7 @@ import java.util.Map;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     public final static int SEARCH_ACTIVITY = 0;
     private GoogleMap mMap;
+    private Room locatedRoom = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(18));
         mMap.setIndoorEnabled(true);
+
+        mMap.setOnIndoorStateChangeListener(changeListener);
     }
+
+    public GoogleMap.OnIndoorStateChangeListener changeListener = new GoogleMap.OnIndoorStateChangeListener(){
+
+        @Override
+        public void onIndoorBuildingFocused() {
+
+        }
+
+        @Override
+        public void onIndoorLevelActivated(IndoorBuilding indoorBuilding) {
+            if (locatedRoom != null) {
+                mMap.clear();
+                if ((-indoorBuilding.getActiveLevelIndex() + 3) == locatedRoom.getFloor())
+                    mMap.addMarker(new MarkerOptions().position(locatedRoom.getPlace()).title(locatedRoom.getName()));
+            }
+        }
+    };
 
 
     @Override
@@ -100,14 +120,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SEARCH_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                Room r = data.getParcelableExtra("ROOM");
+                locatedRoom = data.getParcelableExtra("ROOM");
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(r.getPlace()).title(r.getName()));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(r.getPlace()));
+                mMap.addMarker(new MarkerOptions().position(locatedRoom.getPlace()).title(locatedRoom.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(locatedRoom.getPlace()));
 
                 IndoorBuilding b = mMap.getFocusedBuilding();
                 List<IndoorLevel> il = b.getLevels();
-                il.get(-r.getFloor()+3).activate();
+                il.get(-locatedRoom.getFloor()+3).activate();
             }
         }
     }

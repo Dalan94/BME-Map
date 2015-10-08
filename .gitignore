@@ -15,6 +15,7 @@ proguard/
 /*/build/
 *.apk
 *.ap_
+build/*
 
 
 # Crashlytics configuations
