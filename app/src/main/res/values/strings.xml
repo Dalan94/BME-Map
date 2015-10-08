@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BME-Map</string>
+    <string name="title_activity_maps">BME Map</string>
+    <string name="about">About</string>
+    <string name="writtenby">Written by:\n
+Luis MACHUCA\n
+Pauline DEVILLE\n
+Rémi BERTHO</string>
+    <string name="license">License GNU-GPL3</string>
+    <string name="exit">Exit</string>
+    <string name="map_back_pressed">Use the exit button to exit the app</string>
+    <string name="search">Search a room</string>
+</resources>

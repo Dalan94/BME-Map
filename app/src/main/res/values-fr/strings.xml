@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BME-Map</string>
+    <string name="title_activity_maps">Carte BME</string>
+    <string name="about">À propos</string>
+    <string name="writtenby">Écrit par:\n
+Luis MACHUCA\n
+Pauline DEVILLE\n
+Rémi BERTHO</string>
+    <string name="license">License GNU-GPL3</string>
+    <string name="exit">Quitter</string>
+    <string name="map_back_pressed">Utilisez le bouton quitter pour quitter l\'application</string>
+    <string name="search">Rechercher une salle</string>
+</resources>
