@@ -108,7 +108,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 IndoorBuilding b = mMap.getFocusedBuilding();
                 List<IndoorLevel> il = b.getLevels();
                 il.get(-r.getFloor()+3).activate();
-                //Toast.makeText(MapsActivity.this,il.get(2).getName(), Toast.LENGTH_LONG).show();
             }
         }
     }

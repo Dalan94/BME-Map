@@ -88,8 +88,10 @@ public class SearchActivity extends AppCompatActivity {
             String s = rooms_founded.get(position);
             Room room = null;
             for(Room r:rooms){
-                if (r.getName().equals(s))
+                if (r.getName().equals(s)){
                     room = r;
+                    break;
+                }
             }
             setResult(RESULT_OK, intent);
             intent.putExtra("ROOM",room);
