@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private ListView searchList;
     private List<String> rooms_founded;
     private Intent intent;
+    private ArrayAdapter<String> adapter;
     static {
         rooms = new ArrayList<>();
         rooms.add(new Room("La cité des enfants", 0, new LatLng(48.895592, 2.388550)));
@@ -55,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         for (Room r:rooms){
             rooms_founded.add(r.getName());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rooms_founded);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rooms_founded);
         searchList.setAdapter(adapter);
         searchList.setOnItemClickListener(adapt);
     }
@@ -74,6 +76,7 @@ public class SearchActivity extends AppCompatActivity {
                     rooms_founded.add(r.getName());
                 }
             }
+            adapter.notifyDataSetChanged();
         }
 
         @Override
