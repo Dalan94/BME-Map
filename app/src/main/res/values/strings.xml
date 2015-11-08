@@ -10,4 +10,10 @@ Rémi BERTHO</string>
     <string name="exit">Exit</string>
     <string name="map_back_pressed">Use the exit button to exit the app</string>
     <string name="search">Search a room</string>
+    <string name="title_activity_main">BME Map</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

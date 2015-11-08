@@ -9,8 +9,8 @@
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="/media/Data/Documents/Travail/IHM/BME-Map" />
+            <option value="/media/Data/Documents/Travail/IHM/BME-Map/app" />
           </set>
         </option>
       </GradleProjectSettings>

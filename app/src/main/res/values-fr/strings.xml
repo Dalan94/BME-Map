@@ -11,4 +11,5 @@ Rémi BERTHO</string>
     <string name="exit">Quitter</string>
     <string name="map_back_pressed">Utilisez le bouton quitter pour quitter l\'application</string>
     <string name="search">Rechercher une salle</string>
+    <string name="title_activity_main">Carte BME</string>
 </resources>

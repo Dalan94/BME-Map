@@ -29,22 +29,21 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" >
+            android:name=".AboutActivity"
+            android:label="@string/about" />
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/search" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/about"/>
-
-        <activity
-            android:name=".SearchActivity"
-            android:label="@string/search"/>
     </application>
 
 </manifest>
