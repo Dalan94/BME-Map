@@ -23,7 +23,7 @@ import java.util.List;
  * Created by dalan on 07/10/15.
  */
 public class SearchActivity extends AppCompatActivity {
-    static private List<Room> rooms;
+    static public List<Room> rooms;
     private EditText searchText;
     private ListView searchList;
     private List<String> rooms_founded;
@@ -38,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         rooms.add(new Room("La science dans ma vie",1,new LatLng(48.895113, 2.386825)));
         rooms.add(new Room("Le grand récit de l'univers",2,new LatLng(48.895386, 2.386511 )));
         rooms.add(new Room("Planetarium",2,new LatLng(48.895121, 2.386844)));
+        rooms.add(new Room("Jeux et lumières",2,new LatLng(48.896124, 2.387985)));
         Collections.sort(rooms, new RoomComparator());
     }
 

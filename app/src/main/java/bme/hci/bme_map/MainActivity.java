@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap mMap;
     private Room locatedRoom = null;
     public final static int SEARCH_ACTIVITY = 0;
+    public final static int SCHEDULE_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +134,20 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
+        if (id == R.id.itinerary) {
+            if (locatedRoom != null){
+                Intent intent = new Intent(MainActivity.this, Itinerary.class);
+                intent.putExtra("ROOM",locatedRoom);
+                startActivity(intent);
+            } else
+                Toast.makeText(MainActivity.this, "You need to have search a map before create the itinerary.", Toast.LENGTH_LONG).show();
+        }
+
+        if (id == R.id.schedule) {
+            Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
+            startActivityForResult(intent,SCHEDULE_ACTIVITY);
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -184,7 +200,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SEARCH_ACTIVITY) {
+        if (requestCode == SEARCH_ACTIVITY || requestCode == SCHEDULE_ACTIVITY) {
             if (resultCode == RESULT_OK) {
                 locatedRoom = data.getParcelableExtra("ROOM");
                 mMap.clear();
