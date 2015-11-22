@@ -134,6 +134,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
+        if (id == R.id.search) {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivityForResult(intent, SEARCH_ACTIVITY);
+        }
+
         if (id == R.id.itinerary) {
             if (locatedRoom != null){
                 Intent intent = new Intent(MainActivity.this, Itinerary.class);
@@ -146,6 +151,17 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.schedule) {
             Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
             startActivityForResult(intent,SCHEDULE_ACTIVITY);
+        }
+
+        if (id == R.id.import_schedule){
+            FileDialog fd = new FileDialog(this);
+            fd.setListener(new FileDialog.ActionListener(){
+                public void userAction(int action, String filePath)
+                {
+                    if (action == FileDialog.ACTION_SELECTED_FILE)
+                        Toast.makeText(MainActivity.this, "The schedule was well imported.", Toast.LENGTH_LONG).show();
+                }});;
+            fd.selectFileStrict();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -2,12 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="@string/menu">
+    <item android:title="Rooms">
         <menu>
+            <item android:id="@+id/search"
+                android:title="Search a room" />
             <item android:id="@+id/itinerary"
                 android:title="@string/itinerary" />
+        </menu>
+    </item>
+
+    <item android:title="Schedule">
+        <menu>
             <item android:id="@+id/schedule"
                 android:title="Schedule" />
+            <item android:id="@+id/import_schedule"
+                android:title="Import schedule" />
+        </menu>
+    </item>
+
+    <item android:title="About">
+        <menu>
             <item android:id="@+id/about"
                 android:title="@string/about" />
         </menu>
