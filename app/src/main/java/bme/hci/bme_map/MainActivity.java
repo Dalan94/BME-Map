@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private Room locatedRoom = null;
     public final static int SEARCH_ACTIVITY = 0;
     public final static int SCHEDULE_ACTIVITY = 1;
+    public final static int SEARCH_ACTIVITY_ITINERARY = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,8 +145,11 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, Itinerary.class);
                 intent.putExtra("ROOM",locatedRoom);
                 startActivity(intent);
-            } else
-                Toast.makeText(MainActivity.this, "You need to have search a map before create the itinerary.", Toast.LENGTH_LONG).show();
+            } else{
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivityForResult(intent, SEARCH_ACTIVITY_ITINERARY);
+                //Toast.makeText(MainActivity.this, "You need to have search a map before create the itinerary.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (id == R.id.schedule) {
@@ -216,7 +220,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SEARCH_ACTIVITY || requestCode == SCHEDULE_ACTIVITY) {
+        if (requestCode == SEARCH_ACTIVITY || requestCode == SCHEDULE_ACTIVITY || requestCode == SEARCH_ACTIVITY_ITINERARY ){
             if (resultCode == RESULT_OK) {
                 locatedRoom = data.getParcelableExtra("ROOM");
                 mMap.clear();
@@ -226,6 +230,12 @@ public class MainActivity extends AppCompatActivity
                 IndoorBuilding b = mMap.getFocusedBuilding();
                 List<IndoorLevel> il = b.getLevels();
                 il.get(-locatedRoom.getFloor()+3).activate();
+
+                if (requestCode == SEARCH_ACTIVITY_ITINERARY){
+                    Intent intent = new Intent(MainActivity.this, Itinerary.class);
+                    intent.putExtra("ROOM",locatedRoom);
+                    startActivity(intent);
+                }
             }
         }
     }

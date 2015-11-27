@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
         android:editable="true"
-        android:hint="Type here the room number"
+        android:hint="Type here the room name"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -20,6 +20,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listViewSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView_nb_match" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView_nb_match"
+        android:textSize="18sp"
         android:layout_below="@+id/editTextSearch"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp" />
 </RelativeLayout>

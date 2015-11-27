@@ -20,8 +20,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,7 +104,7 @@ public class ScheduleActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
             int day_num = getArguments().getInt(ARG_SECTION_NUMBER);
 
             TextView textView = (TextView) rootView.findViewById(R.id.schedule_day);
@@ -190,22 +192,59 @@ public class ScheduleActivity extends AppCompatActivity {
             list.setAdapter(adapter);
             list.setOnItemClickListener(adapt);
 
+
+            final RadioGroup radioGroup = (RadioGroup)rootView.findViewById(R.id.radiogroup);
+
+            /*radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch (checkedId){
+                        case R.id.radioButton1:
+                            Toast.makeText(activity,"Value " + 0, Toast.LENGTH_SHORT).show();
+                            //activity.mViewPager.setCurrentItem(0,true);
+                            //activity.mViewPager.setCurrentItem(0);
+                            break;
+                        case R.id.radioButton2:
+                            Toast.makeText(activity,"Value " + 1, Toast.LENGTH_SHORT).show();
+                            //activity.mViewPager.setCurrentItem(1);
+                            break;
+                        case R.id.radioButton3:
+                            Toast.makeText(activity,"Value " + 2, Toast.LENGTH_SHORT).show();
+                            //activity.mViewPager.setCurrentItem(2);
+                            break;
+                        case R.id.radioButton4:
+                            Toast.makeText(activity,"Value " + 3, Toast.LENGTH_SHORT).show();
+                            //activity.mViewPager.setCurrentItem(3);
+                            break;
+                        case R.id.radioButton5:
+                            Toast.makeText(activity,"Value " + 4, Toast.LENGTH_SHORT).show();
+                            //activity.mViewPager.setCurrentItem(4);
+                            break;
+                    }
+                }
+            });*/
+
             String day = null;
             switch (day_num){
                 case 1:
                     day = "Monday";
+                    radioGroup.check(R.id.radioButton1);
                     break;
                 case 2:
                     day = "Tuesday";
+                    radioGroup.check(R.id.radioButton2);
                     break;
                 case 3:
                     day = "Wednesday";
+                    radioGroup.check(R.id.radioButton3);
                     break;
                 case 4:
-                    day = "Thurday";
+                    day = "Thursday";
+                    radioGroup.check(R.id.radioButton4);
                     break;
                 case 5:
                     day = "Friday";
+                    radioGroup.check(R.id.radioButton5);
                     break;
             }
             textView.setText(day);

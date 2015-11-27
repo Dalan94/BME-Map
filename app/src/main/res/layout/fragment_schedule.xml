@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="bme.hci.bme_map.ScheduleActivity$PlaceholderFragment">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
         android:id="@+id/schedule_day"
         android:layout_centerHorizontal="true"
         android:textIsSelectable="false"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -23,14 +24,58 @@
         android:id="@+id/listView_schedule"
         android:layout_below="@+id/space2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/radiogroup" />
 
     <Space
-        android:layout_width="20px"
-        android:layout_height="70px"
+        android:layout_width="20dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/schedule_day"
         android:layout_alignRight="@+id/schedule_day"
         android:layout_alignEnd="@+id/schedule_day"
         android:id="@+id/space2" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:orientation="horizontal"
+        android:layout_marginBottom="45dp"
+        android:id="@+id/radiogroup"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton1"
+            android:checked="true"
+            android:enabled="true"
+            android:clickable="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2"
+            android:clickable="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:id="@+id/radioButton3" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:id="@+id/radioButton4" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:id="@+id/radioButton5" />
+    </RadioGroup>
 
 </RelativeLayout>

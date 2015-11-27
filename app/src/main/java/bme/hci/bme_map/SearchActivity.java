@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
@@ -26,6 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     static public List<Room> rooms;
     private EditText searchText;
     private ListView searchList;
+    private TextView nb_match;
     private List<String> rooms_founded;
     private Intent intent;
     private ArrayAdapter<String> adapter;
@@ -61,6 +63,9 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, rooms_founded);
         searchList.setAdapter(adapter);
         searchList.setOnItemClickListener(adapt);
+
+        nb_match = (TextView)findViewById(R.id.textView_nb_match);
+        nb_match.setText("There is " + rooms_founded.size() + " rooms which match your search:");
     }
 
     private TextWatcher searchWatchr = new TextWatcher() {
@@ -78,6 +83,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
             adapter.notifyDataSetChanged();
+            nb_match.setText("There is " + rooms_founded.size() + " rooms which match your search:");
         }
 
         @Override
